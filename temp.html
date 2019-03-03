@@ -11,7 +11,7 @@ $(document).ready(function(){
 		for (i = 0; i < Math.min(10,data.results.length); i++) {
         console.log(data.results[i].sku);
   			$.get("https://api.wegmans.io/products/"+data.results[i].sku+"/prices?api-version=2018-10-18&subscription-key=ee199fdfe5a748f5af39308164b845e2", function(data2){
-            console.log(data2.stores[0].price);
+            console.log(data.results[i].name +": "+ data2.stores[0].price);
 		} );
         }
     });

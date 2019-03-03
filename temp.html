@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-var query = "Milk";
-$(document).ready(function(){
-  $("button").click(function(){
-    $.get("https://api.wegmans.io/products/search?query="+query+"&api-version=2018-10-18&subscription-key=ee199fdfe5a748f5af39308164b845e2", function(data){
-       var i;
-		for (i = 0; i < Math.min(10,data.results.length); i++) {
-        console.log(data.results[i].sku);
-  			$.get("https://api.wegmans.io/products/"+data.results[i].sku+"/prices?api-version=2018-10-18&subscription-key=ee199fdfe5a748f5af39308164b845e2", function(data2){
-            console.log(data.results[i].name +": "+ data2.stores[0].price);
-		} );
-        }
-    });
-  });
-});
-</script>
-</head>
 <body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<button>Send an HTTP GET request to a page and get the result back</button>
+<script>
+var data = [];
+var query = "Milk";
+function runSerch(){
+	var tt;
+	var p
+	var settings = {
+	  "async": false,
+	  "crossDomain": true,
+	  "url": "https://api.wegmans.io/products/search?query="+query+"&api-version=2018-10-18&subscription-key=ee199fdfe5a748f5af39308164b845e2",
+	  "method": "GET",
+	  "headers": {
+	    "cache-control": "no-cache",
+	    "Postman-Token": "6d2edf61-1888-41e0-8d66-696a5730e677"
+	  }
+	}
+
+	$.ajax(settings).done(function (response) {
+	  tt = response;
+	});
+		for(var i = 0; i<Math.min(10,tt.results.length); i++){
+	    	settings.url = "https://api.wegmans.io/products/"+tt.results[i].sku+"/prices?api-version=2018-10-18&subscription-key=ee199fdfe5a748f5af39308164b845e2"
+	        $.ajax(settings).done(function (response) {
+	  			p = response.stores[0].price;
+			});
+	        data[i] = tt.results[i].name + ": " + p;
+	    }
+	console.log(data);
+}
+</script>
 
 </body>
 </html>
-

@@ -3,9 +3,10 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
+var query = "Milk";
 $(document).ready(function(){
   $("button").click(function(){
-    $.get("https://api.wegmans.io/products/search?query=Milk&api-version=2018-10-18&subscription-key=ee199fdfe5a748f5af39308164b845e2", function(data){
+    $.get("https://api.wegmans.io/products/search?query="+query+"&api-version=2018-10-18&subscription-key=ee199fdfe5a748f5af39308164b845e2", function(data){
        var i;
 		for (i = 0; i < Math.min(10,data.results.length); i++) {
         console.log(data.results[i].sku);

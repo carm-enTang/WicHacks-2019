@@ -17,9 +17,18 @@ input{
     background-color:white;
 }
 
-li a
-{
-    color: navy;
+/*.nav li */
+/*{*/
+/*    list-style-type:none;*/
+/*    color: navy;*/
+/*}*/
+/*.nav li a {*/
+/*    color: navy;*/
+/*    float: right;*/
+/*}*/
+
+.checkout{
+    float:right;
 }
 
 .results{
@@ -28,6 +37,7 @@ li a
     color:black;
     white-space: pre-line;
     float:left;
+    padding: 15%;
 }
 .sale{
     width: 100%;
@@ -67,10 +77,11 @@ footer{
     width:100%;
     height:25%;
     float:left;
-    background-color:#FFA50A;
+    background-color:#3b6815;
     text-align:center;
 }
 a{
     color:white;
     text-align:center;
+    
 }

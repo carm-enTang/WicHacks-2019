@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="style.css" rel="stylesheet">
+    <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="Items.js"></script>
+</head>
+<body onload="introduction()">
+    <div class = "nav">
+        <ul>
+            <li> <a href = "#">Home</a></li>
+            <li> <a href = "#">Checkout</a></li>
+        </ul>
+        
+    </div>
+    <header>
+        <h1>Search for an item!</h1>
+        <input type="text" name="q" id="transcript" placeholder="Speak" />
+        <img onclick="startDictation()" src="//i.imgur.com/cHidSVu.gif" />
+        <button onclick="runSerch()">Submit</button>
+    </header>
+    <p id="results"></p>
+    <!--<div class = "sale">-->
+    <!--    <h1>Items on sale</h1>-->
+    <!--</div>-->
+    <!--<div class = "recommended1">-->
+    <!--    <h1>Item 1</h1>-->
+    <!--</div>-->
+    <!--<div class = "recommended2">-->
+    <!--    <h1>Item 2</h1>-->
+    <!--</div>-->
+    <!--<div class = "recommended3">-->
+    <!--    <h1>Item 3</h1>-->
+    <!--</div>-->
+    <footer>
+        <h2>For more information about the products please vist the <a href="https://www.wegmans.com">Wegmans site</a>.</h2>
+    </footer>
+</body>
+</html>

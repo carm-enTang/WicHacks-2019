@@ -24,7 +24,9 @@ async function introduction(){ if(firstrun){
 function readData(){
 	responsiveVoice.speak("Here are the results for " + query);
 	for(var j = 0; j < data.length;j++){
+		responsiveVoice.speak("Item #"+(j+1));
 		responsiveVoice.speak(data[j]);
+		responsiveVoice.speak("   ");
 	}
 }
 
@@ -55,10 +57,23 @@ function runSerch(){
 	    }
 	//alert(data);
 	var txt = "";
-	for(var j = 0; j < data.length;j++){
-		txt = txt + "\n"+ data[j];
+	var ol = document.getElementById("results");
+	while(ol.childElementCount>0){
+		ol.removeChild(ol.childNodes[0]);
 	}
-	document.getElementById('results').innerHTML = txt;
+	for(var j = 0; j < data.length;j++){
+		txt = data[j];
+		var li = document.createElement("li");
+			li.appendChild(document.createTextNode(txt));
+			ol.appendChild(li);
+		
+	}
+	// document.getElementById('results').innerHTML = txt;
+	
+	// var ul = document.getElementById("results");
+	// var li = document.createElement("li");
+	// li.appendChild(document.createTextNode(txt));
+	// ul.appendChild(li);
 	
 	readData();
 	menu();
@@ -93,7 +108,7 @@ function startDictation() {
   }
 
 
-function menuDictation() {
+async function menuDictation() {
 
     if (window.hasOwnProperty('webkitSpeechRecognition')) {
 
@@ -116,6 +131,7 @@ function menuDictation() {
 	tmp = "ERROR";
         recognition.stop();
       }
+    await sleep(1000);
 	return tmp;
     }
   }
@@ -133,7 +149,7 @@ async function menu(){
 		await sleep(1000);
 		while(responsiveVoice.isPlaying()){ await sleep(100); }
 		user = menuDictation();
-		await sleep(1000);
+		await sleep(2000);
 		console.log(user);
 		if(user == undefined){
 			responsiveVoice.speak("I'm sorry, I didn't hear you please try again." + options);
